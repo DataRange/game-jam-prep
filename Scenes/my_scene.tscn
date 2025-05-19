@@ -1,3 +1,7 @@
 [gd_scene format=3 uid="uid://dvaysndnhd21x"]
 
 [node name="MyScene" type="Node3D"]
+transform = Transform3D(1, 0, 0, 0, 0.999559, -0.0297011, 0, 0.0297011, 0.999559, 0, -0.178227, 0)
+metadata/_edit_group_ = true
+
+[node name="Node3D" type="Node3D" parent="."]
