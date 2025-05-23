@@ -12,5 +12,5 @@ script = ExtResource("1_7iube")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("CapsuleShape3D_anquw")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+[node name="CharacterMesh" type="MeshInstance3D" parent="."]
 mesh = SubResource("CapsuleMesh_anquw")
