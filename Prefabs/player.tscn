@@ -1,50 +1,11 @@
 [gd_scene load_steps=3 format=3 uid="uid://dmues6x8ijgk"]
 
-[sub_resource type="GDScript" id="GDScript_3icqa"]
-script/source = "extends CharacterBody3D
-
-@export var TILT_LOWER_LIMIT = deg_to_rad(-90.0)
-@export var TILT_UPPER_LIMIT = deg_to_rad(90.0)
-@export var CAMERA_CONTROLLER = Node3D
-
-
-var _mouse_input : bool = false
-var _mouse_rotation : Vector3 
-var _rotational_input : float
-var _tilt_input : float
-var JUMP_VELOCITY = 7.0
-var SPEED = 5.0
-
-func _ready():
-	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
-func _unhandled_input(event: InputEvent):
-	_mouse_input = event is InputEventMouseMotion and Input.mouse_mode == Input.MOUSE_MODE_CAPTURED
-	if _mouse_input:
-		_rotational_input = -event.relative.x
-		_tilt_input = -event.relative.y
-		print(Vector2(_rotational_input,_tilt_input))
-func _input(event):
-		get_tree().quit()
-func _update_camera(delta):
-
-	_mouse_rotation.x = 0.1
-	_mouse_rotation.x += _tilt_input * delta
-	_mouse_rotation.x = clamp(_mouse_rotation.x, TILT_LOWER_LIMIT, TILT_UPPER_LIMIT)
-	_mouse_rotation.y += _rotational_input * delta
-	print(_mouse_rotation)
-	$CameraController/Camera3D.transform.basis = Basis.from_euler(_mouse_rotation)
-	$CameraController/Camera3D.rotation.z = 0.0
-	
-	_rotational_input = 0.0
-	_tilt_input = 0.0
-func _physics_process(delta):
-	_update_camera(delta)
-"
+[ext_resource type="Script" uid="uid://vy8swkg240cy" path="res://Scripts/player.gd" id="1_y6xdh"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_3icqa"]
 
 [node name="Player" type="CharacterBody3D"]
-script = SubResource("GDScript_3icqa")
+script = ExtResource("1_y6xdh")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("CapsuleShape3D_3icqa")
