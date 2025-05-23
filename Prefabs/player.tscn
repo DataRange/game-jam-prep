@@ -1,4 +1,6 @@
-[gd_scene load_steps=2 format=3 uid="uid://dmues6x8ijgk"]
+[gd_scene load_steps=3 format=3 uid="uid://dmues6x8ijgk"]
+
+[ext_resource type="PackedScene" uid="uid://byf5lg63ledr7" path="res://Raw Models/Gun Assembly.gltf" id="1_y6xdh"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_3icqa"]
 
@@ -8,3 +10,6 @@
 shape = SubResource("CapsuleShape3D_3icqa")
 
 [node name="Camera3D" type="Camera3D" parent="."]
+
+[node name="Gun" parent="." instance=ExtResource("1_y6xdh")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0.25, -0.4, -0.275)
