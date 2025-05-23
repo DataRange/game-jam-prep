@@ -25,7 +25,7 @@ albedo_color = Color(0.588235, 0.588235, 0.588235, 1)
 environment = SubResource("Environment_go701")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
-transform = Transform3D(-0.866023, -0.433016, 0.250001, 0, 0.499998, 0.866027, -0.500003, 0.749999, -0.43301, 0, 0, 0)
+transform = Transform3D(-0.866024, -0.433016, 0.250001, 0, 0.499998, 0.866026, -0.500003, 0.749999, -0.43301, -14.1876, 7.09202, 10.025)
 shadow_enabled = true
 
 [node name="Floor" type="CSGBox3D" parent="."]

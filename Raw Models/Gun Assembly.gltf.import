@@ -13,8 +13,8 @@ dest_files=["res://.godot/imported/Gun Assembly.gltf-db85af217b7663e76f83ad0a25c
 
 [params]
 
-nodes/root_type=""
-nodes/root_name=""
+nodes/root_type="Node3D"
+nodes/root_name="WeaponHolder"
 nodes/apply_root_scale=true
 nodes/root_scale=1.0
 nodes/import_as_skeleton_bones=false

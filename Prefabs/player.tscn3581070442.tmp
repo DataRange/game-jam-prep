@@ -79,9 +79,6 @@ shape = SubResource("CapsuleShape3D_3icqa")
 [node name="WeaponHolder" parent="CameraController/Camera3D" instance=ExtResource("2_5wxv7")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0.422353, -0.415732, -0.253329)
 
-[node name="RayCast3D" type="RayCast3D" parent="CameraController/Camera3D/WeaponHolder"]
-transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 1.02754, 0.174239, 0.0372748)
-
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
 &"": SubResource("AnimationLibrary_2nftw")
