@@ -8,6 +8,8 @@ extends CharacterBody3D
 @onready var gun_barrel = $CameraController/Camera3D/WeaponHolder/RayCast3D
 @onready var shotProgress = $"CanvasLayer/Shot Progress"
 
+@onready var bulletShootSFX = $"Shoot Bullet SFX"
+
 var bullet = load("res://Prefabs/bullet.tscn")
 var instance
 var SENSITIVITY = 0.003
@@ -24,11 +26,13 @@ func Zoom():
 
 func Fire():
 	if shotProgress.readyToFire: 
+		bulletShootSFX.play()
 		instance = bullet.instantiate()
 		instance.position = gun_barrel.global_position 
 		instance.transform.basis = gun_barrel.global_transform.basis
 		get_parent().add_child(instance)
 		shotProgress.readyToFire = false
+		animation.play("Recoil")
 
 func _ready():
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)

@@ -1,8 +1,9 @@
-[gd_scene load_steps=8 format=3 uid="uid://dmues6x8ijgk"]
+[gd_scene load_steps=10 format=3 uid="uid://dmues6x8ijgk"]
 
 [ext_resource type="Script" uid="uid://vy8swkg240cy" path="res://Scripts/player.gd" id="1_y6xdh"]
 [ext_resource type="PackedScene" uid="uid://byf5lg63ledr7" path="res://Raw Models/Gun Assembly.gltf" id="2_5wxv7"]
 [ext_resource type="PackedScene" uid="uid://divwyfyloxfib" path="res://Prefabs/shot_progress.tscn" id="3_y5hcb"]
+[ext_resource type="AudioStream" uid="uid://3ttbycgxbpge" path="res://Music/SFX/gun_shot.mp3" id="4_2nftw"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_3icqa"]
 
@@ -32,6 +33,20 @@ tracks/1/keys = {
 "update": 0,
 "values": [75.0]
 }
+tracks/2/type = "rotation_3d"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("CameraController/Camera3D/WeaponHolder")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = PackedFloat32Array(0, 1, 0, 0.707107, 0, 0.707107)
+tracks/3/type = "position_3d"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("CameraController/Camera3D")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = PackedFloat32Array(0, 1, 0, 0, 0)
 
 [sub_resource type="Animation" id="Animation_5wxv7"]
 resource_name = "Zooming"
@@ -61,9 +76,27 @@ tracks/1/keys = {
 "values": [75.0, 20.0]
 }
 
+[sub_resource type="Animation" id="Animation_2nftw"]
+resource_name = "Recoil"
+tracks/0/type = "rotation_3d"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CameraController/Camera3D/WeaponHolder")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = PackedFloat32Array(0, 1, 0, 0.707, 0, 0.707, 0.133333, 1, 0.043, 0.706, 0.043, 0.706, 0.266667, 1, 0, 0.707107, 0, 0.707107)
+tracks/1/type = "position_3d"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CameraController/Camera3D")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = PackedFloat32Array(0, 1, 0, 0, 0, 0.133333, 1, 0, 0, 0.75, 0.266667, 1, 0, 0, 0)
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_2nftw"]
 _data = {
 &"RESET": SubResource("Animation_y5hcb"),
+&"Recoil": SubResource("Animation_2nftw"),
 &"Zooming": SubResource("Animation_5wxv7")
 }
 
@@ -92,3 +125,7 @@ libraries = {
 
 [node name="Shot Progress" parent="CanvasLayer" instance=ExtResource("3_y5hcb")]
 mouse_filter = 2
+
+[node name="Shoot Bullet SFX" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_2nftw")
+volume_db = -25.3
