@@ -13,3 +13,7 @@ func _ready() -> void:
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	position += transform.basis * Vector3(0,-speed,0) * delta
+
+
+func _on_area_entered(area: Area3D) -> void:
+	queue_free()

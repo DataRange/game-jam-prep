@@ -1,8 +1,9 @@
-[gd_scene load_steps=8 format=3 uid="uid://1ffjdnxshitx"]
+[gd_scene load_steps=9 format=3 uid="uid://1ffjdnxshitx"]
 
 [ext_resource type="Script" uid="uid://wtr3yf1tnag6" path="res://Scripts/world.gd" id="1_5a7ea"]
 [ext_resource type="PackedScene" uid="uid://dmues6x8ijgk" path="res://Prefabs/player.tscn" id="1_a02cp"]
 [ext_resource type="PackedScene" uid="uid://budykwyr4smho" path="res://Prefabs/character.tscn" id="2_go701"]
+[ext_resource type="PackedScene" uid="uid://cx5dtlbl1bn1s" path="res://Prefabs/targets.tscn" id="4_8j60k"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_yp4wr"]
 sky_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
@@ -41,5 +42,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.44294, 12.3667)
 
 [node name="Character" parent="." instance=ExtResource("2_go701")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.07581, 2.83058, -8.35571)
-visible = false
 setpoints = Array[Vector3]([Vector3(-8, 1.5, -8), Vector3(8, 1.5, -8), Vector3(0, 1.5, -4)])
+
+[node name="Targets" parent="." instance=ExtResource("4_8j60k")]
+transform = Transform3D(1, 0, 0, 0, 0.0772585, -0.997011, 0, 0.997011, 0.0772585, -4.85981, 4.12945, -15.9631)
