@@ -1,7 +1,7 @@
 [gd_scene load_steps=10 format=3 uid="uid://cx5dtlbl1bn1s"]
 
-[ext_resource type="PackedScene" uid="uid://k31tra1nbrou" path="res://Raw Models/target.blend" id="1_kwvbt"]
 [ext_resource type="Script" uid="uid://bae35xje4l05m" path="res://Scripts/targets.gd" id="1_ppp0u"]
+[ext_resource type="PackedScene" uid="uid://dqmr65atxg3v0" path="res://Raw Models/target.gltf" id="2_ndxbx"]
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_ppp0u"]
 height = 0.308716
@@ -44,7 +44,7 @@ script = ExtResource("1_ppp0u")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.00982666, 0)
 shape = SubResource("CylinderShape3D_ppp0u")
 
-[node name="target" parent="." instance=ExtResource("1_kwvbt")]
+[node name="target" parent="." instance=ExtResource("2_ndxbx")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0108453, 0, -0.00357157)
 
 [node name="Death Particles" type="CPUParticles3D" parent="."]
