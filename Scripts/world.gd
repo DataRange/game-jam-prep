@@ -7,7 +7,7 @@ func _ready() -> void:
 	
 	for i in range(numCharacter):
 		
-		var newCharacter: RigidBody3D = enemyResource.instantiate()
+		var newCharacter = enemyResource.instantiate()
 		
 		var numSetpoints = randi_range(2, 5)
 		for j in range(numSetpoints):

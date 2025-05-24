@@ -1,4 +1,4 @@
-extends Node3D
+extends Area3D
 
 const speed = 80.0
 

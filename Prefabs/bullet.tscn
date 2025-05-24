@@ -1,4 +1,4 @@
-[gd_scene load_steps=4 format=3 uid="uid://bo6dofb4pnsb3"]
+[gd_scene load_steps=5 format=3 uid="uid://dtfbemydbqeog"]
 
 [ext_resource type="Script" uid="uid://dkb471dnt2o4s" path="res://Scripts/bullet.gd" id="1_0oen4"]
 
@@ -10,7 +10,10 @@ emission_enabled = true
 emission = Color(0.707023, 0.462629, 0.323906, 1)
 emission_energy_multiplier = 5.0
 
-[node name="Bullet" type="Node3D"]
+[sub_resource type="BoxShape3D" id="BoxShape3D_0oen4"]
+size = Vector3(0.1, 1, 0.1)
+
+[node name="Bullet" type="Area3D" groups=["bullet"]]
 transform = Transform3D(-1, -8.74228e-08, 0, 8.74228e-08, -1, 0, 0, 0, 1, 0, 0, 0)
 script = ExtResource("1_0oen4")
 
@@ -21,3 +24,6 @@ surface_material_override/0 = SubResource("StandardMaterial3D_tuf4i")
 
 [node name="RayCast3D" type="RayCast3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, -1.2, -8.74228e-08, 0, 1.04907e-07, -1, 4.54712e-08, -0.52013, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." groups=["bullet"]]
+shape = SubResource("BoxShape3D_0oen4")
