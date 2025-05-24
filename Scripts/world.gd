@@ -14,7 +14,7 @@ func _ready() -> void:
 			
 			var randX = randf_range(-8.0, 8.0)
 			var randZ = randf_range(0, -8.0)
-			newCharacter.setpoints.append(Vector3(randX, 1.5, randZ))
+			newCharacter.setpoints.append(Vector3(randX, 1.0, randZ))
 			
 		newCharacter.position = newCharacter.setpoints[0]
 		if (i == 0):
