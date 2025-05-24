@@ -1,6 +1,7 @@
-[gd_scene load_steps=7 format=3 uid="uid://budykwyr4smho"]
+[gd_scene load_steps=8 format=3 uid="uid://budykwyr4smho"]
 
 [ext_resource type="Script" uid="uid://bnt1ew223egq0" path="res://Scripts/character.gd" id="1_7iube"]
+[ext_resource type="PackedScene" uid="uid://uqjkb7v1yql4" path="res://Raw Models/character.gltf" id="2_ulf0j"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_anquw"]
 
@@ -43,5 +44,7 @@ initial_velocity_min = 10.0
 initial_velocity_max = 10.0
 scale_amount_curve = SubResource("Curve_j1uod")
 color = Color(1, 0, 0, 1)
+
+[node name="character" parent="." instance=ExtResource("2_ulf0j")]
 
 [connection signal="area_entered" from="." to="." method="_on_area_entered"]
