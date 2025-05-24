@@ -6,6 +6,7 @@ extends CharacterBody3D
 @onready var camera = $CameraController/Camera3D
 @onready var animation = $AnimationPlayer
 @onready var gun_barrel = $CameraController/Camera3D/WeaponHolder/RayCast3D
+@onready var shotProgress = $"CanvasLayer/Shot Progress"
 
 var bullet = load("res://Prefabs/bullet.tscn")
 var instance
@@ -22,10 +23,12 @@ func Zoom():
 	Zoomed = !Zoomed
 
 func Fire():
-	instance = bullet.instantiate()
-	instance.position = gun_barrel.global_position 
-	instance.transform.basis = gun_barrel.global_transform.basis
-	get_parent().add_child(instance)
+	if shotProgress.readyToFire: 
+		instance = bullet.instantiate()
+		instance.position = gun_barrel.global_position 
+		instance.transform.basis = gun_barrel.global_transform.basis
+		get_parent().add_child(instance)
+		shotProgress.readyToFire = false
 
 func _ready():
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
@@ -35,7 +38,7 @@ func _input(event):
 		get_tree().quit()
 	if event.is_action("right_click"):
 		Zoom()
-	if event.is_action_pressed("left_click"):
+	if event.is_action_released("left_click"):
 		Fire()
 
 func _unhandled_input(event):

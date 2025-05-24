@@ -1,7 +1,8 @@
-[gd_scene load_steps=7 format=3 uid="uid://dmues6x8ijgk"]
+[gd_scene load_steps=8 format=3 uid="uid://dmues6x8ijgk"]
 
 [ext_resource type="Script" uid="uid://vy8swkg240cy" path="res://Scripts/player.gd" id="1_y6xdh"]
 [ext_resource type="PackedScene" uid="uid://byf5lg63ledr7" path="res://Raw Models/Gun Assembly.gltf" id="2_5wxv7"]
+[ext_resource type="PackedScene" uid="uid://divwyfyloxfib" path="res://Prefabs/shot_progress.tscn" id="3_y5hcb"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_3icqa"]
 
@@ -86,3 +87,8 @@ transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 1.0275
 libraries = {
 &"": SubResource("AnimationLibrary_2nftw")
 }
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Shot Progress" parent="CanvasLayer" instance=ExtResource("3_y5hcb")]
+mouse_filter = 2
