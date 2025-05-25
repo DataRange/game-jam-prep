@@ -7,6 +7,7 @@ var setpointTolerance = 0.1
 @export var movementSpeed: float = 1.0;
 
 @onready var deathExplosion: CPUParticles3D = $"Death Particles"
+@onready var animation: AnimationPlayer = $character/AnimationPlayer
 
 var hitAngle: float = 0.0
 
@@ -16,9 +17,10 @@ var dead: bool = false
 func _process(delta: float) -> void:
 
 	if not dead:
+		animation.play("walk")
 		var targetSetpoint = setpoints[setpointIdx]
 		if len(setpoints) > 1:
-			
+			look_at(targetSetpoint)
 			var dPosition: Vector3 = position.move_toward(targetSetpoint, movementSpeed * delta)
 			position = dPosition
 			
@@ -27,7 +29,7 @@ func _process(delta: float) -> void:
 				setpointIdx = (setpointIdx + 1) % len(setpoints)
 	
 	else:
-		
+		animation.stop()
 		var xComponent: float = sin(hitAngle) * (PI / 2)
 		var zComponent: float = cos(hitAngle) * (PI / 2)
 		

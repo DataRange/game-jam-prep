@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://1ffjdnxshitx"]
+[gd_scene load_steps=7 format=3 uid="uid://1ffjdnxshitx"]
 
 [ext_resource type="Script" uid="uid://wtr3yf1tnag6" path="res://Scripts/world.gd" id="1_5a7ea"]
 [ext_resource type="PackedScene" uid="uid://dmues6x8ijgk" path="res://Prefabs/player.tscn" id="1_a02cp"]
@@ -16,9 +16,6 @@ background_mode = 2
 sky = SubResource("Sky_a02cp")
 tonemap_mode = 2
 glow_enabled = true
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_yp4wr"]
-albedo_color = Color(0.588235, 0.588235, 0.588235, 1)
 
 [node name="World" type="Node3D"]
 script = ExtResource("1_5a7ea")

@@ -48,6 +48,23 @@ tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = PackedFloat32Array(0, 1, 0, 0, 0)
 
+[sub_resource type="Animation" id="Animation_2nftw"]
+resource_name = "Recoil"
+tracks/0/type = "rotation_3d"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CameraController/Camera3D/WeaponHolder")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = PackedFloat32Array(0, 1, 0, 0.707, 0, 0.707, 0.133333, 1, 0.043, 0.706, 0.043, 0.706, 0.266667, 1, 0, 0.707107, 0, 0.707107)
+tracks/1/type = "position_3d"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CameraController/Camera3D")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = PackedFloat32Array(0, 1, 0, 0, 0, 0.133333, 1, 0, 0, 0.75, 0.266667, 1, 0, 0, 0)
+
 [sub_resource type="Animation" id="Animation_5wxv7"]
 resource_name = "Zooming"
 length = 0.1
@@ -75,23 +92,6 @@ tracks/1/keys = {
 "update": 0,
 "values": [75.0, 20.0]
 }
-
-[sub_resource type="Animation" id="Animation_2nftw"]
-resource_name = "Recoil"
-tracks/0/type = "rotation_3d"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("CameraController/Camera3D/WeaponHolder")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = PackedFloat32Array(0, 1, 0, 0.707, 0, 0.707, 0.133333, 1, 0.043, 0.706, 0.043, 0.706, 0.266667, 1, 0, 0.707107, 0, 0.707107)
-tracks/1/type = "position_3d"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("CameraController/Camera3D")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = PackedFloat32Array(0, 1, 0, 0, 0, 0.133333, 1, 0, 0, 0.75, 0.266667, 1, 0, 0, 0)
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_2nftw"]
 _data = {
