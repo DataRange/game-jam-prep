@@ -1,10 +1,10 @@
-[gd_scene load_steps=18 format=4 uid="uid://budykwyr4smho"]
+[gd_scene load_steps=7 format=3 uid="uid://budykwyr4smho"]
 
 [ext_resource type="Script" uid="uid://bnt1ew223egq0" path="res://Scripts/character.gd" id="1_7iube"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_anquw"]
-radius = 1.1
-height = 4.5
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_anquw"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_7iube"]
 albedo_color = Color(1, 0, 0, 1)
@@ -203,8 +203,12 @@ _data = {
 script = ExtResource("1_7iube")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.22193, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
 shape = SubResource("CapsuleShape3D_anquw")
+
+[node name="CharacterMesh" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+mesh = SubResource("CapsuleMesh_anquw")
 
 [node name="Death Particles" type="CPUParticles3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
@@ -222,28 +226,5 @@ initial_velocity_min = 10.0
 initial_velocity_max = 10.0
 scale_amount_curve = SubResource("Curve_j1uod")
 color = Color(1, 0, 0, 1)
-
-[node name="character" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.98807, 0)
-
-[node name="left foot" type="MeshInstance3D" parent="character"]
-transform = Transform3D(0.2041, 0, 0, 0, 0.2041, 0, 0, 0, 0.2041, -0.456721, -2.7789, 0)
-mesh = SubResource("ArrayMesh_7iube")
-skeleton = NodePath("")
-
-[node name="right foot" type="MeshInstance3D" parent="character"]
-transform = Transform3D(0.2041, 0, 0, 0, 0.2041, 0, 0, 0, 0.2041, 0.456144, -2.7789, 0)
-mesh = SubResource("ArrayMesh_ulf0j")
-skeleton = NodePath("")
-
-[node name="body" type="MeshInstance3D" parent="character"]
-mesh = SubResource("ArrayMesh_j1uod")
-skeleton = NodePath("")
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="character"]
-root_node = NodePath("../..")
-libraries = {
-&"": SubResource("AnimationLibrary_j1uod")
-}
 
 [connection signal="area_entered" from="." to="." method="_on_area_entered"]
