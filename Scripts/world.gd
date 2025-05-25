@@ -2,6 +2,11 @@ extends Node3D
 
 @export var numCharacter: int = 2
 @onready var enemyResource: Resource = preload("res://Prefabs/character.tscn")
+@onready var targetResource: Resource = preload("res://Prefabs/targets.tscn")
+@onready var player = $Player
+
+var target_delay: int = 10
+var target_spawn_time: int = 0
 
 func _ready() -> void:
 	
@@ -27,4 +32,22 @@ func _ready() -> void:
 					characterNode.material_overlay = targetMaterial
 					break
 			
-		add_child(newCharacter)
+		add_child(newCharacter)	
+
+func targetSpawner():
+	if player.time == target_spawn_time:
+		target_spawn_time += target_delay
+		target_delay = randi_range(0,10)
+		var newTarget = targetResource.instantiate()
+		newTarget.position = Vector3(randf_range(-8.0, 8.0), randf_range(2, 16.0),randf_range(0, -8.0))
+		newTarget.died.connect(targetShot)
+		add_child(newTarget)
+		
+
+func targetShot():
+	print("shot")
+	pass
+
+func _process(delta: float) -> void:
+	targetSpawner()
+	

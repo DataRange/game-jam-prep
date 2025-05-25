@@ -1,7 +1,6 @@
 extends CharacterBody3D
 
 
-
 @onready var head = $CameraController
 @onready var camera = $CameraController/Camera3D
 @onready var animation = $AnimationPlayer
@@ -14,6 +13,8 @@ var bullet = load("res://Prefabs/bullet.tscn")
 var instance
 var SENSITIVITY = 0.003
 var Zoomed: bool = false
+
+@export var time: int = 0
 
 func Zoom():
 	if !Zoomed:
@@ -53,3 +54,6 @@ func _unhandled_input(event):
 
 func _physics_process(_delta):
 	move_and_slide()
+
+func _on_timer_display_time_update() -> void:
+	time = $"CanvasLayer/Timer Display".total_time_in_secs

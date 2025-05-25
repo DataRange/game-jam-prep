@@ -1,9 +1,10 @@
-[gd_scene load_steps=10 format=3 uid="uid://dmues6x8ijgk"]
+[gd_scene load_steps=11 format=3 uid="uid://dmues6x8ijgk"]
 
 [ext_resource type="Script" uid="uid://vy8swkg240cy" path="res://Scripts/player.gd" id="1_y6xdh"]
 [ext_resource type="PackedScene" uid="uid://byf5lg63ledr7" path="res://Raw Models/Gun Assembly.gltf" id="2_5wxv7"]
 [ext_resource type="PackedScene" uid="uid://divwyfyloxfib" path="res://Prefabs/shot_progress.tscn" id="3_y5hcb"]
 [ext_resource type="AudioStream" uid="uid://3ttbycgxbpge" path="res://Music/SFX/gun_shot.mp3" id="4_2nftw"]
+[ext_resource type="PackedScene" uid="uid://c2nto5orfmjwj" path="res://Prefabs/timer_display.tscn" id="4_knrd4"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_3icqa"]
 
@@ -126,6 +127,10 @@ libraries = {
 [node name="Shot Progress" parent="CanvasLayer" instance=ExtResource("3_y5hcb")]
 mouse_filter = 2
 
+[node name="Timer Display" parent="CanvasLayer" instance=ExtResource("4_knrd4")]
+
 [node name="Shoot Bullet SFX" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("4_2nftw")
 volume_db = -25.3
+
+[connection signal="TimeUpdate" from="CanvasLayer/Timer Display" to="." method="_on_timer_display_time_update"]

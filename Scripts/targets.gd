@@ -7,6 +7,8 @@ extends Area3D
 @onready var timer: Timer = $Timer
 @onready var progress: ProgressBar = $SubViewport/ProgressBar
 
+signal died
+
 func _ready() -> void:
 	timer.wait_time = randi_range(3,7) * 1.0
 	progress.max_value = timer.wait_time
@@ -19,6 +21,8 @@ func _process(delta: float) -> void:
 
 func _on_area_entered(area: Area3D) -> void:
 	if area.is_in_group("bullet"):
+		emit_signal("died")
+		timer.stop()
 		target.hide()
 		progress.hide()
 		deathExplosion.restart()
