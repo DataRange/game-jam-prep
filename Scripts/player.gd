@@ -6,6 +6,7 @@ extends CharacterBody3D
 @onready var animation = $AnimationPlayer
 @onready var gun_barrel = $CameraController/Camera3D/WeaponHolder/RayCast3D
 @onready var shotProgress = $"CanvasLayer/Shot Progress"
+@onready var crosshair = $CanvasLayer/Crosshair
 
 @onready var bulletShootSFX = $"Shoot Bullet SFX"
 
@@ -52,7 +53,12 @@ func _unhandled_input(event):
 		camera.rotate_x(-event.relative.y * SENSITIVITY)
 		camera.rotation.x = clamp(camera.rotation.x, deg_to_rad(-40), deg_to_rad(60))
 
+func _process(_delta: float) -> void:
+	
+	crosshair.visible = Zoomed
+
 func _physics_process(_delta):
+	
 	move_and_slide()
 
 func _on_timer_display_time_update() -> void:
