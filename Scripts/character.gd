@@ -14,6 +14,44 @@ var hitAngle: float = 0.0
 var isTarget: bool = false
 var dead: bool = false
 
+@onready var body = $character/body
+
+var capSpecs: Array[String] = ["Black", "Blue", "White", "Red"]
+var cap: int = randi_range(0, len(capSpecs))
+
+var eyeWearSpecs: Array[String] = ["Sunglasses", "Glasses"]
+var eyeWear: int = randi_range(0, len(eyeWearSpecs))
+
+var shirtColors: Array[Color] = [Color.RED, Color.BLUE, Color.GREEN, Color.PURPLE, Color.BLACK, Color.CADET_BLUE]
+
+func _ready() -> void:
+	
+	if cap < len(capSpecs):
+		
+		var newCap = load("res://Raw Models/Accessories/Caps/" + capSpecs[cap] + " Cap.gltf").instantiate()
+		newCap.position.y = 0.5;
+		newCap.rotation.y = PI
+		body.add_child(newCap)
+		
+	if eyeWear < len(eyeWearSpecs):
+		
+		var newEyeWear = load("res://Raw Models/Accessories/Eyewear/" + eyeWearSpecs[eyeWear] + ".gltf").instantiate()
+		newEyeWear.position.z = -1.0;
+		body.add_child(newEyeWear)
+		
+	var newShirt: MeshInstance3D = MeshInstance3D.new()
+	newShirt.mesh = CylinderMesh.new()
+	newShirt.scale.x = 2.0
+	newShirt.scale.y = .75
+	newShirt.scale.z = 2.0
+	newShirt.position.y = -1
+	
+	var shirtColor: StandardMaterial3D = StandardMaterial3D.new()
+	shirtColor.albedo_color = shirtColors[randi_range(0, len(shirtColors) - 1)]
+	newShirt.material_overlay = shirtColor
+	
+	body.add_child(newShirt)
+
 func _process(delta: float) -> void:
 
 	if not dead:
