@@ -17,8 +17,8 @@ func _ready() -> void:
 		var numSetpoints = randi_range(2, 5)
 		for j in range(numSetpoints):
 			
-			var randX = randf_range(-8.0, 8.0)
-			var randZ = randf_range(0, -8.0)
+			var randX = randf_range(-40.0, 40.0)
+			var randZ = randf_range(0, -40.0)
 			newCharacter.setpoints.append(Vector3(randX, 0.2, randZ))
 			
 		newCharacter.position = newCharacter.setpoints[0]

@@ -22,7 +22,7 @@ var cap: int = randi_range(0, len(capSpecs))
 var eyeWearSpecs: Array[String] = ["Sunglasses", "Glasses"]
 var eyeWear: int = randi_range(0, len(eyeWearSpecs))
 
-var shirtColors: Array[Color] = [Color.RED, Color.BLUE, Color.GREEN, Color.PURPLE, Color.BLACK, Color.CADET_BLUE]
+var shirtColors: Array[Color] = [Color.RED, Color.BLUE, Color.MAGENTA, Color.BLACK, Color.ROYAL_BLUE]
 
 func _ready() -> void:
 	
@@ -79,6 +79,5 @@ func _on_area_entered(area: Area3D) -> void:
 	if area.is_in_group("bullet"):
 		
 		deathExplosion.restart()
-		area.queue_free()
 		dead = true
 		hitAngle = area.rotation.y
