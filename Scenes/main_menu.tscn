@@ -1,6 +1,6 @@
-[gd_scene load_steps=4 format=3 uid="uid://dl4ds0u2llny4"]
+[gd_scene load_steps=4 format=3 uid="uid://b21bx2p5eh82t"]
 
-[ext_resource type="Script" uid="uid://cni1opmwv5ngl" path="res://Scripts/main_menu.gd" id="1_28flt"]
+[ext_resource type="Script" path="res://Scripts/main_menu.gd" id="1_28flt"]
 
 [sub_resource type="FontFile" id="FontFile_28flt"]
 subpixel_positioning = 0

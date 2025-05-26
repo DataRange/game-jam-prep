@@ -28,9 +28,16 @@ var shirtColorSpecs: Dictionary = {
 	Color.BLACK: "Black",
 	Color.PURPLE: "Purple",
 	Color.DARK_GREEN: "Green",
-	Color.MAROON: "Maroon"
+	Color.MAROON: "Maroon",
+	Color.DARK_GRAY: "Gray"
 }
 var shirtColor = shirtColorSpecs.keys().pick_random()
+
+var beltColorSpecs: Dictionary = {
+	Color.BLACK: "Black",
+	Color.BROWN: "Brown",
+}
+var beltColor = beltColorSpecs.keys().pick_random()
 
 func _ready() -> void:
 	
@@ -54,11 +61,23 @@ func _ready() -> void:
 	newShirt.scale.z = 2.0
 	newShirt.position.y = -1
 	
-	var color: StandardMaterial3D = StandardMaterial3D.new()
-	color.albedo_color = shirtColor
-	newShirt.material_overlay = color
+	var shirtMaterial: StandardMaterial3D = StandardMaterial3D.new()
+	shirtMaterial.albedo_color = shirtColor
+	newShirt.material_overlay = shirtMaterial
+	
+	var newBelt: MeshInstance3D = MeshInstance3D.new()
+	newBelt.mesh = CylinderMesh.new()
+	newBelt.scale.x = 2.1
+	newBelt.scale.y = .1
+	newBelt.scale.z = 2.1
+	newBelt.position.y = -1.6
+	
+	var beltMaterial: StandardMaterial3D = StandardMaterial3D.new()
+	beltMaterial.albedo_color = beltColor
+	newBelt.material_overlay = beltMaterial
 	
 	body.add_child(newShirt)
+	body.add_child(newBelt)
 
 func _process(delta: float) -> void:
 
