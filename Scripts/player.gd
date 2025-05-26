@@ -13,6 +13,8 @@ extends CharacterBody3D
 
 @onready var bulletShootSFX = $"Shoot Bullet SFX"
 
+signal game_over
+
 var bullet = load("res://Prefabs/bullet.tscn")
 var instance
 var SENSITIVITY = 0.003
@@ -157,5 +159,6 @@ func _on_world_target_shot() -> void:
 
 
 func _on_game_end() -> void:
+	emit_signal("game_over")
 	game_end = true
 	shotProgress.hide() # Replace with function body.

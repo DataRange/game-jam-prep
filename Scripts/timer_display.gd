@@ -12,3 +12,7 @@ func _on_timer_timeout():
 	var s = total_time_in_secs - m * 60
 	$Label.text = '%02d:%02d' % [m, s]
 	emit_signal("TimeUpdate")
+
+
+func _on_player_game_over() -> void:
+	$Timer.stop()

@@ -1,9 +1,15 @@
-[gd_scene load_steps=3 format=3 uid="uid://7oox7o6f1n4x"]
+[gd_scene load_steps=5 format=3 uid="uid://7oox7o6f1n4x"]
 
 [ext_resource type="Script" uid="uid://bk52h7f2kiepr" path="res://Scripts/end_screen.gd" id="1_f2mtv"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_f2mtv"]
 bg_color = Color(0.165656, 0.165656, 0.165656, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_f2mtv"]
+font_size = 50
+
+[sub_resource type="LabelSettings" id="LabelSettings_1gwaw"]
+font_size = 20
 
 [node name="End Screen" type="Control"]
 layout_mode = 3
@@ -19,3 +25,32 @@ layout_mode = 0
 offset_right = 1149.0
 offset_bottom = 650.0
 theme_override_styles/panel = SubResource("StyleBoxFlat_f2mtv")
+
+[node name="Title Text" type="Label" parent="Panel"]
+layout_mode = 0
+offset_left = 347.0
+offset_top = 61.0
+offset_right = 802.0
+offset_bottom = 130.0
+text = "title"
+label_settings = SubResource("LabelSettings_f2mtv")
+horizontal_alignment = 1
+
+[node name="Description" type="Label" parent="Panel"]
+layout_mode = 0
+offset_left = 275.0
+offset_top = 215.0
+offset_right = 875.0
+offset_bottom = 402.0
+text = "description"
+label_settings = SubResource("LabelSettings_1gwaw")
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="EscapeStuff" type="Label" parent="Panel"]
+layout_mode = 0
+offset_left = 525.0
+offset_top = 424.0
+offset_right = 624.0
+offset_bottom = 447.0
+text = "Press Escape"

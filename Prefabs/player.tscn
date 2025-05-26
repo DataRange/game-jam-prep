@@ -177,4 +177,5 @@ vertical_alignment = 1
 stream = ExtResource("4_2nftw")
 volume_db = -25.3
 
+[connection signal="game_over" from="." to="CanvasLayer/Timer Display" method="_on_player_game_over"]
 [connection signal="TimeUpdate" from="CanvasLayer/Timer Display" to="." method="_on_timer_display_time_update"]
