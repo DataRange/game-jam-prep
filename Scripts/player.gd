@@ -145,7 +145,6 @@ func new_info():
 	old_info_level = info_level
 
 func _physics_process(_delta):
-	
 	move_and_slide()
 
 func _on_timer_display_time_update() -> void:
