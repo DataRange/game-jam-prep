@@ -29,6 +29,9 @@ var guideUsePosition = Vector3(0, 0, -0.8)
 var cameraFOVStow = 75
 var cameraFOVAim = 20
 
+var targets_shot: int = 0
+var info_level: int = 0
+
 @export var time: int = 0
 
 #func Zoom():
@@ -60,19 +63,26 @@ func createReport():
 		capLabel = "Target is not wearing a cap"
 	else:
 		capLabel = "Target is wearing a " + world.targetCharacter.capSpecs[world.targetCharacter.cap] + " cap"
-	
-	guideLabel.text = "> " + capLabel
+	if info_level >=1:
+		guideLabel.text = "> " + capLabel
+	else:
+		guideLabel.text = "> " + "shoot more targets"
 	
 	var eyeWearLabel: String = ""
 	if world.targetCharacter.eyeWear >= len(world.targetCharacter.eyeWearSpecs):
 		eyeWearLabel = "Target has perfect vision"
 	else:
 		eyeWearLabel = "Target is wearing " + world.targetCharacter.eyeWearSpecs[world.targetCharacter.eyeWear]
-	
-	guideLabel.text += "\n> " + eyeWearLabel
+	if info_level >=2:
+		guideLabel.text += "\n> " + eyeWearLabel
+	else:
+		guideLabel.text += "\n> " + "shoot more targets"
 	
 	var shirtLabel: String = "Target is wearing a " + world.targetCharacter.shirtColorSpecs[world.targetCharacter.shirtColor] + " shirt"
-	guideLabel.text += "\n> " + shirtLabel
+	if info_level >=3:
+		guideLabel.text += "\n> " + shirtLabel
+	else:
+		guideLabel.text += "\n> " + "shoot more targets"
 	
 func _input(event):
 	if event.is_action("exit"):
@@ -99,6 +109,7 @@ func _unhandled_input(event):
 		camera.rotation.x = clamp(camera.rotation.x, deg_to_rad(-40), deg_to_rad(60))
 
 func _process(delta: float) -> void:
+	createReport()
 	
 	if checkingGuide: Zoomed = false
 	
@@ -122,3 +133,18 @@ func _physics_process(_delta):
 
 func _on_timer_display_time_update() -> void:
 	time = $"CanvasLayer/Timer Display".total_time_in_secs
+
+
+func _on_world_target_shot() -> void:
+	targets_shot += 1
+	if targets_shot > 2:
+		info_level = 1
+		if targets_shot > 4:
+			info_level = 2
+			if targets_shot > 7:
+				info_level = 3
+				if targets_shot > 10:
+					info_level = 4
+	createReport()
+	print("info level = ",info_level)
+	print("targets shot = ",targets_shot)

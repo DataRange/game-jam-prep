@@ -22,6 +22,7 @@ func _process(delta: float) -> void:
 
 func _on_area_entered(area: Area3D) -> void:
 	if area.is_in_group("bullet") and !dead:
+		$Ding.play()
 		dead = true
 		emit_signal("died")
 		timer.stop()

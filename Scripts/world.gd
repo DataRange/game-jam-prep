@@ -5,9 +5,10 @@ extends Node3D
 @onready var targetResource: Resource = preload("res://Prefabs/targets.tscn")
 @onready var player = $Player
 
+signal target_shot
+
 var target_delay: int = 10
 var target_spawn_time: int = 0
-
 var targetCharacter
 
 func _ready() -> void:
@@ -42,8 +43,7 @@ func targetSpawner():
 		add_child(newTarget)
 
 func targetShot():
-	print("shot")
-	pass
+	emit_signal("target_shot")
 
 func _process(delta: float) -> void:
 	targetSpawner()
