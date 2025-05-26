@@ -66,6 +66,7 @@ func _process(delta: float) -> void:
 
 func _on_world_civilian_killed() -> void:
 	show()
+	$LoseSound.play()
 	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 	$"Panel/Title Text".text = "You Killed a Civilian"
 	$Panel/Description.text = failures[randi_range(0,9)]
@@ -74,6 +75,7 @@ func _on_world_civilian_killed() -> void:
 
 func _on_world_target_acquried() -> void:
 	show()
+	$WinSound.play()
 	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 	$"Panel/Title Text".text = "Target Acquired"
 	$Panel/Description.text = success[randi_range(0,14)]

@@ -1,6 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://7oox7o6f1n4x"]
+[gd_scene load_steps=7 format=3 uid="uid://7oox7o6f1n4x"]
 
 [ext_resource type="Script" uid="uid://bk52h7f2kiepr" path="res://Scripts/end_screen.gd" id="1_f2mtv"]
+[ext_resource type="AudioStream" uid="uid://dbjyc3mtyemww" path="res://Music/SFX/741973__victor_natas__victory-sting-2.wav" id="2_1gwaw"]
+[ext_resource type="AudioStream" uid="uid://ut0flnlvwak7" path="res://Music/SFX/350986__cabled_mess__lose_c_01.wav" id="3_bhpww"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_f2mtv"]
 bg_color = Color(0.165656, 0.165656, 0.165656, 1)
@@ -54,3 +56,11 @@ offset_top = 424.0
 offset_right = 624.0
 offset_bottom = 447.0
 text = "Press Escape"
+
+[node name="WinSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_1gwaw")
+volume_db = -16.454
+
+[node name="LoseSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_bhpww")
+volume_db = -16.454
