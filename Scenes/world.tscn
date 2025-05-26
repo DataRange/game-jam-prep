@@ -6,7 +6,6 @@
 [ext_resource type="PackedScene" uid="uid://7oox7o6f1n4x" path="res://Scenes/end_screen.tscn" id="4_8j60k"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_yp4wr"]
-sky_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
 ground_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
 
 [sub_resource type="Sky" id="Sky_a02cp"]
@@ -15,8 +14,15 @@ sky_material = SubResource("ProceduralSkyMaterial_yp4wr")
 [sub_resource type="Environment" id="Environment_go701"]
 background_mode = 2
 sky = SubResource("Sky_a02cp")
+ambient_light_color = Color(0, 0.788235, 1, 1)
 tonemap_mode = 2
 glow_enabled = true
+fog_enabled = true
+fog_light_color = Color(0.784314, 0.784314, 0.784314, 1)
+fog_light_energy = 0.5
+fog_density = 0.005
+fog_aerial_perspective = 0.75
+fog_height = 1.0
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_go701"]
 albedo_color = Color(0.588235, 0.588235, 0.588235, 1)
@@ -41,7 +47,7 @@ shadow_enabled = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 12, 50)
 
 [node name="Floor" type="CSGBox3D" parent="."]
-size = Vector3(100, 1, 100)
+size = Vector3(400, 1, 400)
 material = SubResource("StandardMaterial3D_go701")
 
 [node name="Assasin Safehouse" type="StaticBody3D" parent="."]

@@ -46,6 +46,27 @@ func _ready() -> void:
 			
 		add_child(newCharacter)	
 		
+	var xPos: int = -200
+	var yPos: int = -200
+	for i in range(randi_range(30, 40)):
+		
+		var newBuilding = CSGBox3D.new()
+		var buildingWidth = randi_range(40, 50)
+		var buildingHeight = randi_range(75, 150)
+		newBuilding.size = Vector3(buildingWidth, buildingHeight, buildingWidth)
+		newBuilding.use_collision = true
+		
+		newBuilding.position = Vector3(xPos, buildingHeight / 2, yPos + randi_range(2, 5))
+		add_child(newBuilding)
+		
+		xPos += buildingWidth + randi_range(10, 15)
+		if yPos > -120 and (xPos > -50 and xPos < 50):
+			xPos += 100
+		if (xPos > 180):
+			
+			xPos = -200
+			yPos += 30 + randi_range(10, 15)
+		
 
 func targetSpawner():
 	if player.time == target_spawn_time:
