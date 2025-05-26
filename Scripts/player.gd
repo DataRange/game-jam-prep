@@ -56,21 +56,33 @@ func Fire():
 func _ready():
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	
-func updateReport():
+func createReport():
 	
 	var capLabel: String = ""
 	if world.targetCharacter.cap >= len(world.targetCharacter.capSpecs):
 		capLabel = "Target is not wearing a cap"
 	else:
 		capLabel = "Target is wearing a " + world.targetCharacter.capSpecs[world.targetCharacter.cap] + " cap"
+	if info_level >=1:
+		guideLabel.text = "> " + capLabel
+	else:
+		guideLabel.text = "> ???"
 	
 	var eyeWearLabel: String = ""
 	if world.targetCharacter.eyeWear >= len(world.targetCharacter.eyeWearSpecs):
 		eyeWearLabel = "Target has perfect vision"
 	else:
 		eyeWearLabel = "Target is wearing " + world.targetCharacter.eyeWearSpecs[world.targetCharacter.eyeWear]
+	if info_level >=2:
+		guideLabel.text += "\n> " + eyeWearLabel
+	else:
+		guideLabel.text += "\n> ???"
 	
 	var shirtLabel: String = "Target is wearing a " + world.targetCharacter.shirtColorSpecs[world.targetCharacter.shirtColor] + " shirt"
+	if info_level >=3:
+		guideLabel.text += "\n> " + shirtLabel
+	else:
+		guideLabel.text += "\n> ???"
 	
 func _input(event):
 	if event.is_action("exit"):
@@ -97,7 +109,7 @@ func _unhandled_input(event):
 		camera.rotation.x = clamp(camera.rotation.x, deg_to_rad(-40), deg_to_rad(60))
 
 func _process(delta: float) -> void:
-	updateReport()
+	createReport()
 	
 	if checkingGuide: Zoomed = false
 	
@@ -125,8 +137,14 @@ func _on_timer_display_time_update() -> void:
 
 func _on_world_target_shot() -> void:
 	targets_shot += 1
-	if targets_shot % 2 * (info_level + 1) == 0:
-		info_level += 1
-	updateReport()
+	if targets_shot > 2:
+		info_level = 1
+		if targets_shot > 4:
+			info_level = 2
+			if targets_shot > 7:
+				info_level = 3
+				if targets_shot > 10:
+					info_level = 4
+	createReport()
 	print("info level = ",info_level)
 	print("targets shot = ",targets_shot)
