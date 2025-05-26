@@ -6,6 +6,8 @@ extends Node3D
 @onready var player = $Player
 
 signal target_shot
+signal targetAcquried
+signal civilianKilled
 
 var target_delay: int = 10
 var target_spawn_time: int = 0
@@ -16,6 +18,8 @@ func _ready() -> void:
 	for i in range(numCharacter):
 		
 		var newCharacter = enemyResource.instantiate()
+		newCharacter.civilianKilled.connect(civilian)
+		newCharacter.targetAcquired.connect(target)
 		
 		var numSetpoints = randi_range(2, 5)
 		for j in range(numSetpoints):
@@ -48,3 +52,7 @@ func targetShot():
 func _process(delta: float) -> void:
 	targetSpawner()
 	
+func civilian():
+	emit_signal("civilianKilled")
+func target():
+	emit_signal("targetAcquried")
