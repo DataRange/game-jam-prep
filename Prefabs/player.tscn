@@ -5,7 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://divwyfyloxfib" path="res://Prefabs/shot_progress.tscn" id="3_y5hcb"]
 [ext_resource type="AudioStream" uid="uid://3ttbycgxbpge" path="res://Music/SFX/gun_shot.mp3" id="4_2nftw"]
 [ext_resource type="PackedScene" uid="uid://c2nto5orfmjwj" path="res://Prefabs/timer_display.tscn" id="4_knrd4"]
-[ext_resource type="Script" uid="uid://bjlrqttq51oho" path="res://Scripts/new_info_unlocked.gd" id="5_hck1p"]
+[ext_resource type="Script" path="res://Scripts/new_info_unlocked.gd" id="5_hck1p"]
 [ext_resource type="AudioStream" uid="uid://cahl1k32by52p" path="res://Music/SFX/162482__kastenfrosch__achievement.mp3" id="7_juxdh"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_3icqa"]

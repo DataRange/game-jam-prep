@@ -1,9 +1,10 @@
-[gd_scene load_steps=10 format=3 uid="uid://1ffjdnxshitx"]
+[gd_scene load_steps=11 format=3 uid="uid://1ffjdnxshitx"]
 
 [ext_resource type="Script" uid="uid://wtr3yf1tnag6" path="res://Scripts/world.gd" id="1_5a7ea"]
 [ext_resource type="PackedScene" uid="uid://dmues6x8ijgk" path="res://Prefabs/player.tscn" id="1_a02cp"]
 [ext_resource type="PackedScene" uid="uid://bu4w6uf6ruf1v" path="res://Raw Models/Assassin Room.gltf" id="3_5a7ea"]
 [ext_resource type="PackedScene" uid="uid://7oox7o6f1n4x" path="res://Scenes/end_screen.tscn" id="4_8j60k"]
+[ext_resource type="AudioStream" uid="uid://cjimq105gih8h" path="res://Music/SFX/crowd_talking-6762.mp3" id="5_fo5ed"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_yp4wr"]
 ground_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
@@ -31,7 +32,7 @@ albedo_color = Color(0.588235, 0.588235, 0.588235, 1)
 
 [node name="World" type="Node3D"]
 script = ExtResource("1_5a7ea")
-numCharacter = 25
+numCharacter = 50
 
 [node name="End Screen" parent="." instance=ExtResource("4_8j60k")]
 mouse_filter = 2
@@ -40,8 +41,9 @@ mouse_filter = 2
 environment = SubResource("Environment_go701")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
-transform = Transform3D(-0.866024, -0.433016, 0.250001, 0, 0.499998, 0.866026, -0.500003, 0.749999, -0.43301, -14.1876, 7.09202, 10.025)
+transform = Transform3D(-0.866024, -0.433016, 0.250001, 0, 0.499998, 0.866027, -0.500003, 0.75, -0.43301, 0, 86.502, 0)
 shadow_enabled = true
+shadow_opacity = 0.75
 
 [node name="Player" parent="." instance=ExtResource("1_a02cp")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 12, 50)
@@ -58,6 +60,9 @@ shape = SubResource("BoxShape3D_go701")
 
 [node name="Root" parent="Assasin Safehouse" instance=ExtResource("3_5a7ea")]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, -1, 2.5)
+
+[node name="Crowd Talking" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_fo5ed")
 
 [connection signal="civilianKilled" from="." to="End Screen" method="_on_world_civilian_killed"]
 [connection signal="civilianKilled" from="." to="Player" method="_on_game_end"]

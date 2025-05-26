@@ -5,6 +5,8 @@ extends Node3D
 @onready var targetResource: Resource = preload("res://Prefabs/targets.tscn")
 @onready var player = $Player
 
+@onready var crowdBGNoise = $"Crowd Talking"
+
 signal target_shot
 signal targetAcquried
 signal civilianKilled
@@ -27,8 +29,8 @@ func _ready() -> void:
 		var numSetpoints = randi_range(2, 5)
 		for j in range(numSetpoints):
 			
-			var randX = randf_range(-40.0, 40.0)
-			var randZ = randf_range(0, -40.0)
+			var randX = randf_range(-50.0, 40.0)
+			var randZ = randf_range(0, -50.0)
 			newCharacter.setpoints.append(Vector3(randX, 0.2, randZ))
 			
 		newCharacter.position = newCharacter.setpoints[0]
@@ -60,8 +62,8 @@ func _ready() -> void:
 		add_child(newBuilding)
 		
 		xPos += buildingWidth + randi_range(10, 15)
-		if yPos > -120 and (xPos > -50 and xPos < 50):
-			xPos += 100
+		if yPos > -120 and (xPos > -60 and xPos < 60):
+			xPos += 125
 		if (xPos > 180):
 			
 			xPos = -200
@@ -81,6 +83,9 @@ func targetShot():
 	emit_signal("target_shot")
 
 func _process(delta: float) -> void:
+	
+	if not crowdBGNoise.playing:
+		crowdBGNoise.play()
 	targetSpawner()
 	
 func civilian():
