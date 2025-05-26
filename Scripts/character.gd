@@ -11,6 +11,9 @@ var setpointTolerance = 0.1
 @onready var deathExplosion: CPUParticles3D = $"Death Particles"
 @onready var animation: AnimationPlayer = $character/AnimationPlayer
 
+signal targetAcquired
+signal civilianKilled
+
 var hitAngle: float = 0.0
 
 var isTarget: bool = false
@@ -107,5 +110,7 @@ func _on_area_entered(area: Area3D) -> void:
 		hitAngle = area.rotation.y
 		
 		if isTarget:
-			
+			emit_signal("targetAcquired")
 			print("You got the target!")
+		else:
+			emit_signal("civilianKilled")
