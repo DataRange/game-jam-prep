@@ -8,6 +8,7 @@ extends Area3D
 @onready var progress: ProgressBar = $SubViewport/ProgressBar
 
 signal died
+var dead: bool = false
 
 func _ready() -> void:
 	timer.wait_time = randi_range(3,7) * 1.0
@@ -20,7 +21,8 @@ func _process(delta: float) -> void:
 	pass
 
 func _on_area_entered(area: Area3D) -> void:
-	if area.is_in_group("bullet"):
+	if area.is_in_group("bullet") and !dead:
+		dead = true
 		emit_signal("died")
 		timer.stop()
 		target.hide()
@@ -31,6 +33,8 @@ func _on_death_particles_finished() -> void:
 	queue_free() # Replace with function body.
 
 func _on_timer_timeout() -> void:
-	target.hide()
-	progress.hide()
-	deathExplosion.restart()
+	if !dead:
+		target.hide()
+		progress.hide()
+		deathExplosion.restart()
+		dead = true

@@ -40,7 +40,6 @@ func targetSpawner():
 		newTarget.position = Vector3(randf_range(-8.0, 8.0), randf_range(2, 16.0),randf_range(0, -8.0))
 		newTarget.died.connect(targetShot)
 		add_child(newTarget)
-		
 
 func targetShot():
 	print("shot")
