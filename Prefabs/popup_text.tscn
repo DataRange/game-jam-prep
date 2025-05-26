@@ -1,0 +1,15 @@
+[gd_scene load_steps=2 format=3 uid="uid://dwfyrvjswq6yf"]
+
+[ext_resource type="Script" uid="uid://bjlrqttq51oho" path="res://Scripts/new_info_unlocked.gd" id="1_q3gvn"]
+
+[node name="Popup Text" type="Node"]
+
+[node name="New Info Unlocked" type="RichTextLabel" parent="."]
+offset_left = 7.0
+offset_top = 126.0
+offset_right = 281.0
+offset_bottom = 183.0
+text = "New Information unlocked
+-Press Tab"
+script = ExtResource("1_q3gvn")
+fade = true

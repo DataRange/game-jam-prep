@@ -14,6 +14,7 @@ extends CharacterBody3D
 @onready var bulletShootSFX = $"Shoot Bullet SFX"
 
 signal game_over
+signal newinfo
 
 var bullet = load("res://Prefabs/bullet.tscn")
 var instance
@@ -33,6 +34,7 @@ var cameraFOVStow = 75
 var cameraFOVAim = 20
 
 var targets_shot: int = 0
+var old_info_level: int = 0
 var info_level: int = 0
 
 @export var time: int = 0
@@ -134,7 +136,13 @@ func _process(delta: float) -> void:
 	crosshair.visible = Zoomed
 	if game_end:
 		shotProgress.hide()
-		
+	if old_info_level < info_level:
+		new_info()
+
+func new_info():
+	emit_signal("newinfo")
+	$"new Information".play()
+	old_info_level = info_level
 
 func _physics_process(_delta):
 	
@@ -161,5 +169,6 @@ func _on_world_target_shot() -> void:
 
 func _on_game_end() -> void:
 	emit_signal("game_over")
+	crosshair.hide()
 	game_end = true
 	shotProgress.hide() # Replace with function body.
