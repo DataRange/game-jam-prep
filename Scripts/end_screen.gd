@@ -13,8 +13,11 @@ func _process(delta: float) -> void:
 
 func _on_world_civilian_killed() -> void:
 	show()
+	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 	pass # Replace with function body.
 
 
 func _on_world_target_acquried() -> void:
+	show()
+	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 	pass # Replace with function body.
