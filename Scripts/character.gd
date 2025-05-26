@@ -33,12 +33,6 @@ var shirtColorSpecs: Dictionary = {
 }
 var shirtColor = shirtColorSpecs.keys().pick_random()
 
-var beltColorSpecs: Dictionary = {
-	Color.BLACK: "Black",
-	Color.BROWN: "Brown",
-}
-var beltColor = beltColorSpecs.keys().pick_random()
-
 func _ready() -> void:
 	
 	if cap < len(capSpecs):
@@ -65,20 +59,7 @@ func _ready() -> void:
 	shirtMaterial.albedo_color = shirtColor
 	newShirt.material_overlay = shirtMaterial
 	
-	var newBelt: MeshInstance3D = MeshInstance3D.new()
-	newBelt.mesh = CylinderMesh.new()
-	newBelt.scale.x = 2.1
-	newBelt.scale.y = .1
-	newBelt.scale.z = 2.1
-	newBelt.position.y = -1.6
-	
-	var beltMaterial: StandardMaterial3D = StandardMaterial3D.new()
-	beltMaterial.albedo_color = beltColor
-	newBelt.material_overlay = beltMaterial
-	
 	body.add_child(newShirt)
-	body.add_child(newBelt)
-
 func _process(delta: float) -> void:
 
 	if not dead:
