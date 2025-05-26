@@ -28,7 +28,7 @@ func _ready() -> void:
 		if (i == 0):
 			newCharacter.isTarget = true
 			targetCharacter = newCharacter
-			player.updateReport()
+			player.createReport()
 			
 		add_child(newCharacter)	
 		
