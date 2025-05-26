@@ -48,3 +48,5 @@ shape = SubResource("BoxShape3D_go701")
 
 [node name="Root" parent="Assasin Safehouse" instance=ExtResource("3_5a7ea")]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, -1, 2.5)
+
+[connection signal="target_shot" from="." to="Player" method="_on_world_target_shot"]
