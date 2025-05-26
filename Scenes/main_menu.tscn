@@ -1,6 +1,7 @@
-[gd_scene load_steps=4 format=3 uid="uid://b21bx2p5eh82t"]
+[gd_scene load_steps=5 format=3 uid="uid://b21bx2p5eh82t"]
 
-[ext_resource type="Script" path="res://Scripts/main_menu.gd" id="1_28flt"]
+[ext_resource type="Script" uid="uid://cni1opmwv5ngl" path="res://Scripts/main_menu.gd" id="1_28flt"]
+[ext_resource type="AudioStream" uid="uid://cxucolj8wku20" path="res://Music/eco-technology-145636.mp3" id="2_48xlc"]
 
 [sub_resource type="FontFile" id="FontFile_28flt"]
 subpixel_positioning = 0
@@ -385,6 +386,10 @@ offset_right = 655.0
 offset_bottom = 120.0
 theme_override_font_sizes/font_size = 43
 text = "Controls"
+
+[node name="Music" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_48xlc")
+volume_db = -20.0
 
 [connection signal="pressed" from="VBoxContainer/Start" to="." method="_on_start_pressed"]
 [connection signal="pressed" from="VBoxContainer/Controls" to="." method="_on_controls_pressed"]

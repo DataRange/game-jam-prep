@@ -6,6 +6,7 @@ extends Node3D
 @onready var player = $Player
 
 @onready var crowdBGNoise = $"Crowd Talking"
+@onready var bgMusic = $"Background Music"
 
 signal target_shot
 signal targetAcquried
@@ -86,6 +87,8 @@ func _process(delta: float) -> void:
 	
 	if not crowdBGNoise.playing:
 		crowdBGNoise.play()
+	if not bgMusic.playing:
+		bgMusic.play()
 	targetSpawner()
 	
 func civilian():

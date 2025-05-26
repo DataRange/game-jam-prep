@@ -1,10 +1,11 @@
-[gd_scene load_steps=11 format=3 uid="uid://1ffjdnxshitx"]
+[gd_scene load_steps=12 format=3 uid="uid://1ffjdnxshitx"]
 
 [ext_resource type="Script" uid="uid://wtr3yf1tnag6" path="res://Scripts/world.gd" id="1_5a7ea"]
 [ext_resource type="PackedScene" uid="uid://dmues6x8ijgk" path="res://Prefabs/player.tscn" id="1_a02cp"]
 [ext_resource type="PackedScene" uid="uid://bu4w6uf6ruf1v" path="res://Raw Models/Assassin Room.gltf" id="3_5a7ea"]
 [ext_resource type="PackedScene" uid="uid://7oox7o6f1n4x" path="res://Scenes/end_screen.tscn" id="4_8j60k"]
 [ext_resource type="AudioStream" uid="uid://cjimq105gih8h" path="res://Music/SFX/crowd_talking-6762.mp3" id="5_fo5ed"]
+[ext_resource type="AudioStream" uid="uid://b1drmb1yc4mi" path="res://Music/night-detective-226857.mp3" id="6_5ukr8"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_yp4wr"]
 ground_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
@@ -63,6 +64,10 @@ transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, -1,
 
 [node name="Crowd Talking" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("5_fo5ed")
+
+[node name="Background Music" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("6_5ukr8")
+volume_db = -20.0
 
 [connection signal="civilianKilled" from="." to="End Screen" method="_on_world_civilian_killed"]
 [connection signal="civilianKilled" from="." to="Player" method="_on_game_end"]
