@@ -18,6 +18,7 @@ var instance
 var SENSITIVITY = 0.003
 var Zoomed: bool = false
 var checkingGuide: bool = false
+var game_end: bool = false
 
 var gunStowPosition = Vector3(0.422, -0.416, -0.253)
 var gunAimPosition = Vector3(-0.039, -0.286, 0.0)
@@ -86,21 +87,22 @@ func createReport():
 	
 func _input(event):
 	if event.is_action("exit"):
-		get_tree().quit()
-	
-	if not checkingGuide:
-		if event.is_action_pressed("right_click"):
-			Zoomed = true
-		elif event.is_action_released("right_click"):
-			Zoomed = false
-			
-		if event.is_action_released("left_click"):
-			Fire()
+		get_tree().change_scene_to_file("res://Scenes/main_menu.tscn")
+	if !game_end:
 		
-	if event.is_action_pressed("open_guide"):
-		checkingGuide = true
-	elif event.is_action_released("open_guide"):
-		checkingGuide = false
+		if not checkingGuide:
+			if event.is_action_pressed("right_click"):
+				Zoomed = true
+			elif event.is_action_released("right_click"):
+				Zoomed = false
+				
+			if event.is_action_released("left_click"):
+				Fire()
+			
+		if event.is_action_pressed("open_guide"):
+			checkingGuide = true
+		elif event.is_action_released("open_guide"):
+			checkingGuide = false
 
 func _unhandled_input(event):
 	if event is InputEventMouseMotion:
@@ -126,6 +128,9 @@ func _process(delta: float) -> void:
 	shotProgress.visible = not checkingGuide
 	
 	crosshair.visible = Zoomed
+	if game_end:
+		shotProgress.hide()
+		
 
 func _physics_process(_delta):
 	
@@ -148,3 +153,8 @@ func _on_world_target_shot() -> void:
 	createReport()
 	print("info level = ",info_level)
 	print("targets shot = ",targets_shot)
+
+
+func _on_game_end() -> void:
+	game_end = true
+	shotProgress.hide() # Replace with function body.

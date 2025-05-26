@@ -2,7 +2,8 @@
 
 [ext_resource type="Script" uid="uid://bk52h7f2kiepr" path="res://Scripts/end_screen.gd" id="1_f2mtv"]
 
-[sub_resource type="CanvasTexture" id="CanvasTexture_f2mtv"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_f2mtv"]
+bg_color = Color(0.165656, 0.165656, 0.165656, 1)
 
 [node name="End Screen" type="Control"]
 layout_mode = 3
@@ -13,8 +14,8 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_f2mtv")
 
-[node name="TextureRect" type="TextureRect" parent="."]
+[node name="Panel" type="Panel" parent="."]
 layout_mode = 0
-offset_right = 1147.0
-offset_bottom = 649.0
-texture = SubResource("CanvasTexture_f2mtv")
+offset_right = 1149.0
+offset_bottom = 650.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_f2mtv")
