@@ -1,6 +1,6 @@
 extends CharacterBody3D
 
-
+@onready var world = $".."
 @onready var head = $CameraController
 @onready var camera = $CameraController/Camera3D
 @onready var animation = $AnimationPlayer
@@ -8,6 +8,8 @@ extends CharacterBody3D
 @onready var gun_barrel = $CameraController/Camera3D/WeaponHolder/RayCast3D
 @onready var shotProgress = $"CanvasLayer/Shot Progress"
 @onready var crosshair = $CanvasLayer/Crosshair
+@onready var guide = $CameraController/Camera3D/Guide
+@onready var guideLabel = $CameraController/Camera3D/Guide/Description
 
 @onready var bulletShootSFX = $"Shoot Bullet SFX"
 
@@ -15,9 +17,14 @@ var bullet = load("res://Prefabs/bullet.tscn")
 var instance
 var SENSITIVITY = 0.003
 var Zoomed: bool = false
+var checkingGuide: bool = false
 
-var stowPosition = Vector3(0.422, -0.416, -0.253)
-var aimPosition = Vector3(-0.039, -0.286, 0.0)
+var gunStowPosition = Vector3(0.422, -0.416, -0.253)
+var gunAimPosition = Vector3(-0.039, -0.286, 0.0)
+var gunGuidePosition = Vector3(0.422, -0.75, -0.253)
+
+var guideStowPosition = Vector3(0, -1.0, -0.6)
+var guideUsePosition = Vector3(0, 0, -0.8)
 
 var cameraFOVStow = 75
 var cameraFOVAim = 20
@@ -46,13 +53,41 @@ func Fire():
 func _ready():
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	
+func createReport():
+	
+	var capLabel: String = ""
+	if world.targetCharacter.cap >= len(world.targetCharacter.capSpecs):
+		capLabel = "Target is not wearing a cap"
+	else:
+		capLabel = "Target is wearing a " + world.targetCharacter.capSpecs[world.targetCharacter.cap] + " cap"
+	
+	guideLabel.text = "> " + capLabel
+	
+	var eyeWearLabel: String = ""
+	if world.targetCharacter.eyeWear >= len(world.targetCharacter.eyeWearSpecs):
+		eyeWearLabel = "Target has perfect vision"
+	else:
+		eyeWearLabel = "Target is wearing " + world.targetCharacter.eyeWearSpecs[world.targetCharacter.eyeWear]
+	
+	guideLabel.text += "\n> " + eyeWearLabel
+	
 func _input(event):
 	if event.is_action("exit"):
 		get_tree().quit()
-	if event.is_action("right_click"):
-		Zoomed = !Zoomed
-	if event.is_action_released("left_click"):
-		Fire()
+	
+	if not checkingGuide:
+		if event.is_action_pressed("right_click"):
+			Zoomed = true
+		elif event.is_action_released("right_click"):
+			Zoomed = false
+			
+		if event.is_action_released("left_click"):
+			Fire()
+		
+	if event.is_action_pressed("open_guide"):
+		checkingGuide = true
+	elif event.is_action_released("open_guide"):
+		checkingGuide = false
 
 func _unhandled_input(event):
 	if event is InputEventMouseMotion:
@@ -62,11 +97,19 @@ func _unhandled_input(event):
 
 func _process(delta: float) -> void:
 	
-	var weaponPositionSetpoint: Vector3 = aimPosition if Zoomed else stowPosition
-	gunHolder.position = lerp(gunHolder.position, weaponPositionSetpoint, 6.0 * delta)
+	if checkingGuide: Zoomed = false
 	
+	var weaponPositionSetpoint: Vector3 = gunAimPosition if Zoomed else gunStowPosition
+	var weaponRotSetpoint: float = deg_to_rad(90.0) if checkingGuide else 0.0
 	var cameraFOVSetpoint: float = cameraFOVAim if Zoomed else cameraFOVStow
+	var guidePositionSetpoint: Vector3 = guideUsePosition if checkingGuide else guideStowPosition
+	
+	gunHolder.position = lerp(gunHolder.position, weaponPositionSetpoint, 6.0 * delta)
+	gunHolder.rotation.z = lerp(gunHolder.rotation.z, weaponRotSetpoint, 6.0 * delta)
+	guide.position = lerp(guide.position, guidePositionSetpoint, 6.0 * delta)
 	camera.fov = lerp(camera.fov, cameraFOVSetpoint, 6.0 * delta)
+	
+	shotProgress.visible = not checkingGuide
 	
 	crosshair.visible = Zoomed
 

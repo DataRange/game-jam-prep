@@ -8,6 +8,8 @@ extends Node3D
 var target_delay: int = 10
 var target_spawn_time: int = 0
 
+var targetCharacter
+
 func _ready() -> void:
 	
 	for i in range(numCharacter):
@@ -24,15 +26,11 @@ func _ready() -> void:
 		newCharacter.position = newCharacter.setpoints[0]
 		if (i == 0):
 			newCharacter.isTarget = true
-			var characterNodes: Array[Node] = newCharacter.get_children()
-			for characterNode in characterNodes:
-				if characterNode.name == "CharacterMesh":
-					var targetMaterial: StandardMaterial3D = StandardMaterial3D.new()
-					targetMaterial.albedo_color = Color.RED
-					characterNode.material_overlay = targetMaterial
-					break
+			targetCharacter = newCharacter
+			player.createReport()
 			
 		add_child(newCharacter)	
+		
 
 func targetSpawner():
 	if player.time == target_spawn_time:

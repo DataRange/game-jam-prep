@@ -81,3 +81,7 @@ func _on_area_entered(area: Area3D) -> void:
 		deathExplosion.restart()
 		dead = true
 		hitAngle = area.rotation.y
+		
+		if isTarget:
+			
+			print("You got the target!")

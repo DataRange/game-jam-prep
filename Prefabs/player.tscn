@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://dmues6x8ijgk"]
+[gd_scene load_steps=12 format=3 uid="uid://dmues6x8ijgk"]
 
 [ext_resource type="Script" uid="uid://vy8swkg240cy" path="res://Scripts/player.gd" id="1_y6xdh"]
 [ext_resource type="PackedScene" uid="uid://byf5lg63ledr7" path="res://Raw Models/Gun Assembly.gltf" id="2_5wxv7"]
@@ -7,6 +7,9 @@
 [ext_resource type="PackedScene" uid="uid://c2nto5orfmjwj" path="res://Prefabs/timer_display.tscn" id="4_knrd4"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_3icqa"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_knrd4"]
+size = Vector3(1, 1, 0.01)
 
 [sub_resource type="Animation" id="Animation_y5hcb"]
 length = 0.001
@@ -116,6 +119,31 @@ transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0.4223
 
 [node name="RayCast3D" type="RayCast3D" parent="CameraController/Camera3D/WeaponHolder"]
 transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 1.02754, 0.174239, 0.0372748)
+
+[node name="Guide" type="MeshInstance3D" parent="CameraController/Camera3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.6)
+mesh = SubResource("BoxMesh_knrd4")
+
+[node name="Title" type="Label3D" parent="CameraController/Camera3D/Guide"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.4, 0.4, 0.01)
+pixel_size = 0.001
+double_sided = false
+modulate = Color(0, 0, 0, 1)
+text = "Target Description
+"
+font_size = 64
+outline_size = 4
+horizontal_alignment = 0
+
+[node name="Description" type="Label3D" parent="CameraController/Camera3D/Guide"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.4, 0.25, 0.01)
+pixel_size = 0.001
+double_sided = false
+modulate = Color(0, 0, 0, 1)
+text = "Target"
+outline_size = 4
+horizontal_alignment = 0
+vertical_alignment = 0
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
