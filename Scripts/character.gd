@@ -1,5 +1,7 @@
 extends Area3D
 
+@onready var world = $"."
+
 @export var setpoints: Array[Vector3]
 var setpointIdx: int = 0
 var setpointTolerance = 0.1
@@ -21,9 +23,11 @@ var dead: bool = false
 
 var capSpecs: Array[String] = ["Black", "Blue", "White", "Red", "Purple"]
 var cap: int = randi_range(0, len(capSpecs))
+var targetCap
 
 var eyeWearSpecs: Array[String] = ["Sunglasses", "Glasses", "Monocle"]
 var eyeWear: int = randi_range(0, len(eyeWearSpecs))
+var targetEyeWear
 
 var shirtColorSpecs: Dictionary = {
 	Color.RED: "Red",
@@ -35,8 +39,19 @@ var shirtColorSpecs: Dictionary = {
 	Color.DARK_GRAY: "Gray"
 }
 var shirtColor = shirtColorSpecs.keys().pick_random()
+var targetShirtColor
 
 func _ready() -> void:
+	
+	var matchingTargetCap: bool = targetCap == cap
+	var matchingTargetEyeWear: bool = targetEyeWear == eyeWear
+	var matchingTargetShirtColor: bool = targetShirtColor == shirtColor
+	
+	while (matchingTargetCap and matchingTargetEyeWear and matchingTargetShirtColor and not isTarget):
+		
+		cap = randi_range(0, len(capSpecs))
+		eyeWear = randi_range(0, len(eyeWearSpecs))
+		shirtColor = shirtColorSpecs.keys().pick_random()
 	
 	if cap < len(capSpecs):
 		
@@ -63,6 +78,7 @@ func _ready() -> void:
 	newShirt.material_overlay = shirtMaterial
 	
 	body.add_child(newShirt)
+	
 func _process(delta: float) -> void:
 
 	if not dead:
