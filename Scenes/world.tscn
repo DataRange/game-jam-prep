@@ -24,7 +24,7 @@ albedo_color = Color(0.588235, 0.588235, 0.588235, 1)
 
 [node name="World" type="Node3D"]
 script = ExtResource("1_5a7ea")
-numCharacter = 10
+numCharacter = 25
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_go701")

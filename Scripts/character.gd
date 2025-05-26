@@ -16,13 +16,21 @@ var dead: bool = false
 
 @onready var body = $character/body
 
-var capSpecs: Array[String] = ["Black", "Blue", "White", "Red"]
+var capSpecs: Array[String] = ["Black", "Blue", "White", "Red", "Purple"]
 var cap: int = randi_range(0, len(capSpecs))
 
-var eyeWearSpecs: Array[String] = ["Sunglasses", "Glasses"]
+var eyeWearSpecs: Array[String] = ["Sunglasses", "Glasses", "Monocle"]
 var eyeWear: int = randi_range(0, len(eyeWearSpecs))
 
-var shirtColors: Array[Color] = [Color.RED, Color.BLUE, Color.MAGENTA, Color.BLACK, Color.ROYAL_BLUE]
+var shirtColorSpecs: Dictionary = {
+	Color.RED: "Red",
+	Color.BLUE: "Blue",
+	Color.BLACK: "Black",
+	Color.PURPLE: "Purple",
+	Color.DARK_GREEN: "Green",
+	Color.MAROON: "Maroon"
+}
+var shirtColor = shirtColorSpecs.keys().pick_random()
 
 func _ready() -> void:
 	
@@ -46,9 +54,9 @@ func _ready() -> void:
 	newShirt.scale.z = 2.0
 	newShirt.position.y = -1
 	
-	var shirtColor: StandardMaterial3D = StandardMaterial3D.new()
-	shirtColor.albedo_color = shirtColors[randi_range(0, len(shirtColors) - 1)]
-	newShirt.material_overlay = shirtColor
+	var color: StandardMaterial3D = StandardMaterial3D.new()
+	color.albedo_color = shirtColor
+	newShirt.material_overlay = color
 	
 	body.add_child(newShirt)
 

@@ -71,6 +71,9 @@ func createReport():
 	
 	guideLabel.text += "\n> " + eyeWearLabel
 	
+	var shirtLabel: String = "Target is wearing a " + world.targetCharacter.shirtColorSpecs[world.targetCharacter.shirtColor] + " shirt"
+	guideLabel.text += "\n> " + shirtLabel
+	
 func _input(event):
 	if event.is_action("exit"):
 		get_tree().quit()
