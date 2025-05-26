@@ -13,6 +13,9 @@ var targetCharacter
 
 func _ready() -> void:
 	
+	var targetCap
+	var targetEyeWear
+	var targetShirtColor
 	for i in range(numCharacter):
 		
 		var newCharacter = enemyResource.instantiate()
@@ -29,6 +32,13 @@ func _ready() -> void:
 			newCharacter.isTarget = true
 			targetCharacter = newCharacter
 			player.createReport()
+			targetCap = newCharacter.cap
+			targetEyeWear = newCharacter.eyeWear
+			targetShirtColor = newCharacter.shirtColor
+		
+		newCharacter.targetCap = targetCap
+		newCharacter.targetEyeWear = targetEyeWear
+		newCharacter.targetShirtColor = targetShirtColor
 			
 		add_child(newCharacter)	
 		
